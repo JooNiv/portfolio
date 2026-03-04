@@ -1,0 +1,41 @@
+{
+    "id": "skills",
+    "title": "Skills",
+    "len": 6,
+    "skills": {
+        "Quantum": [
+            "Qiskit",
+            "Cirq",
+            "PennyLane"
+        ],
+        "Programming": [
+            "Python",
+            "C++",
+            "Rust",
+            "JavaScript",
+            "Cuda"
+        ],
+        "Frontend": [
+            "React",
+            "Astro",
+            "Tailwind CSS",
+            "Panda CSS"
+        ],
+        "Backend": [
+            "Express",
+            "FastAPI"
+        ],
+        "Tools": [
+            "Git",
+            "Docker",
+            "Linux",
+            "Uv"
+        ],
+        "Currently learning": [
+            "Qrisp",
+            "Flutter",
+            "SolidJS",
+            "GSAP"
+        ]
+    }
+}

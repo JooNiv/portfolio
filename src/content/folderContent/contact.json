@@ -1,0 +1,28 @@
+{
+    "id": "contact",
+    "title": "Contact",
+    "len": 3,
+    "links": {
+        "Email": {
+            "id": "email",
+            "url": "joonas.nivala@gmail.com",
+            "href": "mailto:joonas.nivala@gmail.com",
+            "text": "Email",
+            "icon": "envelope"
+        },
+        "LinkedIn": {
+            "id": "linkedin",
+            "url": "linkedin.com/in/joonasnivala/",
+            "href": "https://linkedin.com/in/joonasnivala/",
+            "text": "LinkedIn",
+            "icon": "linkedin"
+        },
+        "GitHub": {
+            "id": "github",
+            "url": "github.com/jooniv",
+            "href": "https://www.github.com/jooniv",
+            "text": "GitHub",
+            "icon": "github"
+        }
+    }
+}

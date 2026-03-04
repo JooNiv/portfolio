@@ -1,0 +1,14 @@
+{
+    "id": "aboutme",
+    "title": "About Me",
+    "len": 1,
+    "tags": [
+        "Working @ CSC",
+        "Studying @ Aalto"
+    ],
+    "chapters": [
+        "**Quantum Computing** specialist working on **HPC QC systems** and **quantum software**. Check out **FiQCI**.",
+        "Currently at the last stretch of completing my **Master's in Engineering Physics** with major in **Quantum Technology** and minor in **computer science**.",
+        "Passionate about the **Quantum future**, **software development**, the intersection of the two, and all things **science and technology**."
+    ]
+}
