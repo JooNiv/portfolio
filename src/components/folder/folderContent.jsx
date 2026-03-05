@@ -2,8 +2,6 @@ import { flex } from '../../../styled-system/patterns'
 import { css } from '../../../styled-system/css'
 import { makeColorCva } from '../../utils/cva'
 
-import { Switch, Match } from "solid-js"
-
 import { AboutMe } from '../aboutme'
 import { Skills } from '../skills'
 import { Contact } from '../contact'
