@@ -17,6 +17,10 @@ body, [class*="content-element"], button, div {
   animation: scroll-left 25s linear infinite;
 }
 
-.carousel-track:hover {
+.carousel-track:not(.paused):hover {
+  animation-play-state: paused;
+}
+
+.carousel-track.paused {
   animation-play-state: paused;
 }

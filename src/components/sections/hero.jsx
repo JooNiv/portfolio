@@ -1,14 +1,14 @@
-import { flex } from '../../styled-system/patterns'
-import { css } from '../../styled-system/css'
+import { flex } from '../../../styled-system/patterns'
+import { css } from '../../../styled-system/css'
 
-import { FolderButton } from './folderButton'
-import { HeroFolderButton } from './heroFolderButton'
-import { Folders } from './folders'
-import { Header } from './header'
-import { Footer } from './footer'
+import { FolderButton } from '../folder/folderButton'
+import { HeroFolderButton } from '../folder/heroFolderButton'
+import { Folders } from '../sections/folders'
+import { Header } from '../layout/header'
+import { Footer } from '../layout/footer'
 import { Intro } from './intro'
 import { Notes } from './notes'
-import { Modal } from './modal'
+import { Modal } from '../layout/modal'
 
 import { gsap } from "gsap"
 

@@ -1,5 +1,5 @@
-import { flex } from '../../styled-system/patterns'
-import { ThemeSwitcher } from './themeSwitcher'
+import { flex } from '../../../styled-system/patterns'
+import { ThemeSwitcher } from '../themeSwitcher'
 
 import { AiOutlineCopyrightCircle } from 'solid-icons/ai'
 

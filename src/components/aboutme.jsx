@@ -3,7 +3,7 @@ import { css, cx } from '../../styled-system/css'
 
 import { parseBold } from '../utils/text'
 
-import { Tag } from './tag'
+import { Tag } from './ui/tag'
 
 import { For } from "solid-js"
 

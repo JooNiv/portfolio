@@ -1,5 +1,5 @@
-import { flex } from '../../styled-system/patterns'
-import { ThemeSwitcher } from './themeSwitcher'
+import { flex } from '../../../styled-system/patterns'
+import { ThemeSwitcher } from '../themeSwitcher'
 import { onCleanup, onMount } from 'solid-js'
 import gsap from 'gsap'
 

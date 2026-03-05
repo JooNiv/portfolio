@@ -33,7 +33,7 @@
                 "Panda CSS",
                 "GSAP"
             ],
-            "pill": "Highlight",
+            "pill": "New",
             "description": "**This website** is built using **Astro** and **SolidJS**. It features a custom design, smooth animations, and a responsive layout. The source code is available on GitHub.",
             "link": "https://github.com/JooNiv/portfolio"
         },
@@ -65,7 +65,7 @@
                 "Jekyll",
                 "Motion"
             ],
-            "pill": "Highlight",
+            "pill": "Work",
             "description": "The official website for the **Finnish Quantum Computing Infrastructure (FiQCI)**. The website provides information about the project, its goals, its members, and details and status of available **Quantum Computers**. It also features a blog where updates and news about the project are posted.",
             "link": "https://fiqci.org"
         },
@@ -78,7 +78,7 @@
             "tags": [
                 "Flutter"
             ],
-            "pill": "Highlight",
+            "pill": "School",
             "description": "**Mood Pixels** is a **mood tracking app** built with **Flutter**. It allows users to track their daily moods and view statistics. The app features a simple and intuitive interface, customizable mood categories, and data visualization tools.",
             "link": "https://github.com/JooNiv/dag_project1"}
     }

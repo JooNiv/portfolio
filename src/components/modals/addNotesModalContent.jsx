@@ -1,10 +1,12 @@
-import { css } from '../../styled-system/css'
-import { flex } from '../../styled-system/patterns'
-import { openModal, closeModal } from './modal'
+import { css } from '../../../styled-system/css'
+import { flex } from '../../../styled-system/patterns'
+import { openModal, closeModal } from '../layout/modal'
 
 import { createSignal } from 'solid-js'
 
 import { isProfane } from 'no-profanity';
+
+import { BasicButton } from '../ui/basicButton';
 
 export const openAddNotesModal = (setNotes) => {
     openModal(() => <AddNotesModalContent setNotes={setNotes}/>)
@@ -81,26 +83,8 @@ const AddNotesModalContent = (props) => {
                         })}
                     />
                     {error() && <p className={css({ color: 'accent.orange/70', marginBottom: '1rem' })}>{error()}</p>}
-                    <button
-                        type="submit"
-                        className={flex({
-                            paddingX: '0.8rem 0.8rem',
-                            paddingY: '0.1rem',
-                            borderRadius: '5px',
-                            borderColor: 'muted',
-                            border: '1px solid',
-                            fontSize: { base: 'xs', xs: 'sm' },
-                            width: 'fit-content',
-                            cursor: 'default',
-                            bg: 'surface',
-                            _hover: {
-                                bg: 'hover',
-                                cursor: 'pointer',
-                            },
-                            zIndex: 1,
-                        })}>
-                        Add Note
-                    </button>
+                    <BasicButton type="submit" children="Add Note" />
+                    
                 </form>
             </div>
         </>

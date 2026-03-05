@@ -1,7 +1,7 @@
-import { flex } from '../../styled-system/patterns'
-import { cx } from '../../styled-system/css'
+import { flex } from '../../../styled-system/patterns'
+import { cx } from '../../../styled-system/css'
 
-import { FolderButton } from "./folderButton"
+import { FolderButton } from "../folder/folderButton"
 
 import { For, createSignal } from "solid-js"
 

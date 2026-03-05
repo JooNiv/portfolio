@@ -1,16 +1,12 @@
-import { flex } from '../../styled-system/patterns'
-import { css } from '../../styled-system/css'
-import { cva } from '../../styled-system/css'
+import { flex } from '../../../styled-system/patterns'
+import { css } from '../../../styled-system/css'
+import { cva } from '../../../styled-system/css'
 
 import { gsap } from "gsap"
 
 import { onMount } from "solid-js";
 
-import { makeColorCva } from '../utils/cva'
-
-const dynFill = makeColorCva('fill', 'folder')
-const dynText = makeColorCva('color', 'accent')
-const dynBg = makeColorCva('bg', 'accent', '/30')
+import { dynFill,dynText, dynBg } from '../../utils/cva'
 
 export const HeroFolderButton = ({ content, setRef, onClick }) => {
 

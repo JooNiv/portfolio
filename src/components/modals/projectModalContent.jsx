@@ -1,27 +1,18 @@
-import { css } from '../../styled-system/css'
-import { flex } from '../../styled-system/patterns'
+import { css } from '../../../styled-system/css'
+import { flex } from '../../../styled-system/patterns'
 import { Show, For } from "solid-js"
 import { Dynamic } from "solid-js/web"
-import { Tag } from './tag'
-import { makeColorCva } from '../utils/cva'
-import { parseBold } from '../utils/text'
+import { Tag } from '../ui/tag'
+import { dynBgLight } from '../../utils/cva'
+import { parseBold } from '../../utils/text'
 import { AiOutlineArrowRight } from 'solid-icons/ai'
-import { MdFillContent_cut } from 'solid-icons/md'
-import { CgWebsite } from 'solid-icons/cg'
-import { VsSearchFuzzy } from 'solid-icons/vs'
-import { FaBrandsReact } from 'solid-icons/fa'
-import { TbFillMoodHappy } from 'solid-icons/tb'
-import { openModal } from './modal'
+import { openModal } from '../layout/modal'
 
-const iconMap = {
-    qcut: MdFillContent_cut,
-    portfolio: CgWebsite,
-    qcutfind: VsSearchFuzzy,
-    fiqciweb: FaBrandsReact,
-    moodpixels: TbFillMoodHappy,
-}
+import { projectIconMap } from '../../utils/iconMaps'
 
-let dynBg = makeColorCva('bg', 'accent', '/10')
+const iconMap = projectIconMap
+
+let dynBg = dynBgLight
 
 export const openProjectModal = (project) => {
     openModal(() => <ProjectModalContent project={/*@once*/ project} />)

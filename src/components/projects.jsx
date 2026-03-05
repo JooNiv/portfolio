@@ -1,18 +1,14 @@
 import { flex } from '../../styled-system/patterns'
 import { css, cx } from '../../styled-system/css'
-import { Tag } from './tag'
-import { openProjectModal } from './projectModalContent'
-import { makeColorCva } from '../utils/cva'
+import { Tag } from './ui/tag'
+import { openProjectModal } from './modals/projectModalContent'
+import { dynBgLight, dynText } from '../utils/cva'
 import { For } from "solid-js"
 import { Dynamic } from "solid-js/web"
-import { MdFillContent_cut } from 'solid-icons/md'
 import { AiOutlineArrowRight } from 'solid-icons/ai'
-import { CgWebsite } from 'solid-icons/cg'
-import { VsSearchFuzzy } from 'solid-icons/vs'
-import { FaBrandsReact } from 'solid-icons/fa'
-import { TbFillMoodHappy } from 'solid-icons/tb'
+import { projectIconMap } from '../utils/iconMaps'
 
-let dynBg = makeColorCva('bg', 'accent', '/10')
+let dynBg = dynBgLight
 
 const iconClass = css({ 
     fill: 'muted',
@@ -20,12 +16,30 @@ const iconClass = css({
     height: '1.5rem',
 })
 
-const iconMap = {
-    qcut: MdFillContent_cut,
-    portfolio: CgWebsite,
-    qcutfind: VsSearchFuzzy,
-    fiqciweb: FaBrandsReact,
-    moodpixels: TbFillMoodHappy,
+const iconMap = projectIconMap
+
+const pillColorMap = {
+    "New": 'green',
+    "Work": 'blue',
+    "School": 'purple',
+    "Highlight": 'orange',
+}
+
+const Pill = (props) => {
+    return (
+        <div className={css({
+            padding: '0.1rem 0.5rem',
+            borderRadius: '5px',
+            fontSize: 'xs',
+            fontWeight: '500',
+            width: 'fit-content',
+            },
+            dynText.raw({ color: pillColorMap[props.type] || props.color }),
+            dynBg.raw({ color: pillColorMap[props.type] || props.color }),
+        )}>
+            {props.type}
+        </div>
+    )
 }
 
 export const Projects = (props) => {
@@ -130,15 +144,26 @@ export const Projects = (props) => {
                             </For>
                         </div>
                     </div>
+                    <div className={css({
+                        display: {base: 'none', sm: 'block'},
+                    })}>
+                        <Pill type={project.pill} color={project.color} />
+                    </div>
+                    
 
                 </div>
+                <div className={css({
+                        display: {base: 'none', xxs: 'block', sm: 'none'},
+                    })}>
+                        <Pill type={project.pill} color={project.color} />
+                    </div>
                 <button 
                     onClick={(e) => {
                         e.preventDefault()
                         openProjectModal(project)
                     }}
                     className={flex({
-                        display: {base: 'none', xxs: 'flex'},
+                        display: {base: 'none', sm: 'flex'},
                         align: 'center',
                         justify: 'center',
                         gap: '0.25rem',

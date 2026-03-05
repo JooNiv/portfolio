@@ -1,4 +1,4 @@
-import { css } from '../../styled-system/css'
+import { css } from '../../../styled-system/css'
 import { createSignal, Show, createEffect, onCleanup } from "solid-js"
 import { Portal } from "solid-js/web"
 import { AiOutlineClose } from 'solid-icons/ai'
@@ -14,8 +14,30 @@ export const closeModal = () => {
 }
 
 export const Modal = () => {
+    let modalRef;
+
     const handleKeyDown = (e) => {
         if (e.key === 'Escape') closeModal()
+
+        if (e.key === 'Tab' && modalRef) {
+            const focusable = modalRef.querySelectorAll(
+                'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+            )
+            const first = focusable[0]
+            const last = focusable[focusable.length - 1]
+
+            if (e.shiftKey) {
+                if (document.activeElement === first) {
+                    e.preventDefault()
+                    last?.focus()
+                }
+            } else {
+                if (document.activeElement === last) {
+                    e.preventDefault()
+                    first?.focus()
+                }
+            }
+        }
     }
 
     createEffect(() => {
@@ -23,6 +45,13 @@ export const Modal = () => {
         if (modalContent()) {
             document.addEventListener('keydown', handleKeyDown)
             document.body.style.overflow = 'hidden'
+            // Focus the modal after render
+            requestAnimationFrame(() => {
+                const focusable = modalRef?.querySelectorAll(
+                    'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+                )
+                focusable?.[0]?.focus()
+            })
         } else {
             document.removeEventListener('keydown', handleKeyDown)
             document.body.style.overflow = ''
@@ -64,6 +93,7 @@ export const Modal = () => {
                     })}
                 >
                     <div
+                        ref={(el) => modalRef = el}
                         onClick={(e) => e.stopPropagation()}
                         className={css({
                             pointerEvents: 'auto',

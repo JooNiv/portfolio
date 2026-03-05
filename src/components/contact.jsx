@@ -1,13 +1,14 @@
 import { flex } from '../../styled-system/patterns'
 import { css, cx } from '../../styled-system/css'
-import { Tag } from './tag'
-import { makeColorCva } from '../utils/cva'
+import { Tag } from './ui/tag'
+import { dynBgLight } from '../utils/cva'
 import { For } from "solid-js"
 import { Dynamic } from "solid-js/web"
-import { AiOutlineMail, AiFillGithub, AiFillLinkedin } from 'solid-icons/ai'
 import { FiArrowUpRight } from 'solid-icons/fi'
 
-let dynBg = makeColorCva('bg', 'accent', '/10')
+import { contactIconMap } from '../utils/iconMaps'
+
+let dynBg = dynBgLight
 
 const iconClass = css({ 
     fill: 'muted',
@@ -15,11 +16,7 @@ const iconClass = css({
     height: '1.5rem',
 })
 
-const iconMap = {
-    email: AiOutlineMail,
-    github: AiFillGithub,
-    linkedin: AiFillLinkedin,
-}
+const iconMap = contactIconMap
 
 export const Contact = (props) => {
 

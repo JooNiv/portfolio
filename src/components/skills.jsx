@@ -1,7 +1,7 @@
 import { css, cx } from '../../styled-system/css'
 import { grid, flex } from '../../styled-system/patterns'
 
-import { Tag } from './tag'
+import { Tag } from './ui/tag'
 
 import { For } from "solid-js"
 

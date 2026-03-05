@@ -1,5 +1,5 @@
-import { flex } from '../../styled-system/patterns'
-import { css, cx } from '../../styled-system/css'
+import { flex } from '../../../styled-system/patterns'
+import { css, cx } from '../../../styled-system/css'
 
 export const Intro = (props) => {
     return (

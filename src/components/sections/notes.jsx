@@ -1,13 +1,14 @@
-import { flex } from '../../styled-system/patterns'
-import { cx } from '../../styled-system/css'
+import { flex } from '../../../styled-system/patterns'
+import { cx } from '../../../styled-system/css'
 
 import { For, createSignal, createEffect, onMount, Show } from "solid-js"
 
-import { openAddNotesModal } from './addNotesModalContent'
+import { openAddNotesModal } from '../modals/addNotesModalContent'
 
-import { NoteCard } from './noteCard'
+import { NoteCard } from '../ui/noteCard'
 
 import { VsDash } from 'solid-icons/vs'
+import { BasicButton } from '../ui/basicButton'
 
 export const Notes = (props) => {
 
@@ -18,6 +19,11 @@ export const Notes = (props) => {
 
     const testNotes = [
         { content: "This is a note.", author: "Alice" },
+        { content: "This is another note.", author: "Bob" },
+        { content: "This is yet another note.", author: "Charlie" },
+        { content: "This is a fourth note.", author: "David" },
+        { content: "This is a fifth note.", author: "Eve" },
+        { content: "This is a sixth note.", author: "Frank" },
 
     ]
 
@@ -32,7 +38,10 @@ export const Notes = (props) => {
         const doesOverflow = notes().length > 0 && checkOverflow();
         setOverflows(doesOverflow);
         if (carouselRef) {
-            carouselRef.style.animationPlayState = doesOverflow ? 'running' : 'paused';
+            carouselRef.classList.remove('paused');
+            if (!doesOverflow) {
+                carouselRef.classList.add('paused');
+            }
             setPauseText(doesOverflow ? "Pause" : "Resume");
         }
     }
@@ -71,61 +80,28 @@ export const Notes = (props) => {
                 <p className={flex({ align: 'center' })} ><VsDash /> NOTES </p>
                 <div className={flex({ direction: 'row', gap: '1rem' })}>
                     <Show when={overflows()}>
-                        <button
-                            className={flex({
-                                paddingX: '0.8rem 0.8rem',
-                                paddingY: '0.1rem',
-                                borderRadius: '5px',
-                                borderColor: 'muted',
-                                border: '1px solid',
-                                fontSize: { base: 'xs', xs: 'sm' },
-                                width: 'fit-content',
-                                cursor: 'default',
-                                bg: 'surface',
-                                _hover: {
-                                    bg: 'hover',
-                                    cursor: 'pointer',
-                                },
-                                zIndex: 1,
-                            })}
+                        <BasicButton
                             onClick={
                                 () => {
                                     if (carouselRef && overflows()) {
-                                        if (carouselRef.style.animationPlayState === 'paused') {
-                                            carouselRef.style.animationPlayState = 'running';
+                                        if (carouselRef.classList.contains('paused')) {
+                                            carouselRef.classList.remove('paused');
                                             setPauseText("Pause")
-                                            return
-                                        }
-                                        else {
-                                            carouselRef.style.animationPlayState = 'paused';
+                                        } else {
+                                            carouselRef.classList.add('paused');
                                             setPauseText("Resume")
                                         }
                                     }
                                 }
                             } >
                             {pauseText()}
-                        </button>
+                        </BasicButton>
                     </Show>
-                    <button
+                    <BasicButton
                         onClick={() => openAddNotesModal(setNotes)}
-                        className={flex({
-                            paddingX: '0.8rem 0.8rem',
-                            paddingY: '0.1rem',
-                            borderRadius: '5px',
-                            borderColor: 'muted',
-                            border: '1px solid',
-                            fontSize: { base: 'xs', xs: 'sm' },
-                            width: 'fit-content',
-                            cursor: 'default',
-                            bg: 'surface',
-                            _hover: {
-                                bg: 'hover',
-                                cursor: 'pointer',
-                            },
-                            zIndex: 1,
-                        })}>
+                    >
                         Add Note
-                    </button>
+                    </BasicButton>
                 </div>
             </div>
             <div
