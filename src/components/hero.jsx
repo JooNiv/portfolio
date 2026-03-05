@@ -4,13 +4,21 @@ import { css } from '../../styled-system/css'
 import { FolderButton } from './folderButton'
 import { HeroFolderButton } from './heroFolderButton'
 import { Folders } from './folders'
+import { Header } from './header'
+import { Footer } from './footer'
+import { Intro } from './intro'
+import { Notes } from './notes'
+import { Modal } from './modal'
 
 import { gsap } from "gsap"
 
-export const Hero = ({folderContent}) => {
+export const Hero = ({folderContent, heroContent}) => {
 
     let foldersRef;
     let buttonRef;
+    let heroRef;
+    let introRef;
+    let notesRef;
 
     const onClick = () => {
         if (!buttonRef || !foldersRef) return
@@ -26,13 +34,36 @@ export const Hero = ({folderContent}) => {
             onComplete: () => { buttonRef.style.display = 'none' }
         })
 
+        tl.fromTo(heroRef,
+            { alignItems: 'center', justifyContent: 'center' },
+            { alignItems: 'center', justifyContent: 'flex-start', duration: 0.1, ease: "power3.inOut" }
+        )
+
         // Show folders container, then animate in
         tl.call(() => {
             foldersRef.style.display = 'flex'
+            introRef.style.display = 'flex'
+            notesRef.style.display = 'flex'
         })
-        tl.fromTo(foldersRef, 
+
+        // After notes are visible, trigger overflow check
+        tl.call(() => {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    // Dispatch a custom event that Notes can listen to
+                    notesRef.dispatchEvent(new CustomEvent('check-overflow'))
+                })
+            })
+        })
+        tl.fromTo(introRef, 
             { opacity: 0, y: 30 },
             { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }
+        )
+
+        tl.fromTo(foldersRef, 
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "power3.out"},
+            "-=0.5"
         )
 
         // Stagger each folder button child
@@ -43,27 +74,39 @@ export const Hero = ({folderContent}) => {
         )
     }
 
-    let heroContent = {
-        title: "Joonas Nivala",
-        subtitle: "Let's go!",
-        pill: "JooNiv"
-    }
-
     return (
         <div className={flex({
             direction: 'column',
+            bg: 'transparent',
             align: 'center',
-            justify: 'center',
-            height: '100vh',
-            bg: 'bg',
+            maxWidth: '1000px',
+            minHeight: '100vh',
+            width: 'full',
             padding: '2rem',
-            gap: '2rem',
         })}>
-        
-        <HeroFolderButton content={heroContent} num={folderContent?.length} setRef={(el) => (buttonRef = el)} color="gold" onClick={onClick} />
-        <Folders folderContent={folderContent} setRef={(el) => (foldersRef = el)} className={css({
-            display: 'none',
-        })} />
+            <Header />
+
+            <Intro setRef={(el) => (introRef = el)}/>
+
+            <Notes setRef={(el) => (notesRef = el)} />
+            
+            <div ref={(el) => (heroRef = el)} className={flex({
+                direction: 'column',
+                align: 'center',
+                justify: 'center',
+                flex: '1',
+                width: 'full',
+                gap: '2rem',
+            })}>
+            
+            <HeroFolderButton content={heroContent} setRef={(el) => (buttonRef = el)} onClick={onClick} />
+            <Folders folderContent={folderContent} setRef={(el) => (foldersRef = el)} className={css({
+                display: 'none',
+            })} />
+            </div>
+
+            <Footer />
+            <Modal />
         </div>
     )
 }

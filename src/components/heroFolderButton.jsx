@@ -6,31 +6,22 @@ import { gsap } from "gsap"
 
 import { onMount } from "solid-js";
 
-const COLORS = ['gold', 'blue', 'orange', 'green', 'purple']
-
-const makeColorCva = (prop, tokenBase, suffix = '') =>
-    cva({
-        variants: {
-            color: Object.fromEntries(
-                COLORS.map((c) => [c, { [prop]: `${tokenBase}.${c}${suffix}` }])
-            ),
-        },
-        defaultVariants: { color: 'blue' },
-    })
+import { makeColorCva } from '../utils/cva'
 
 const dynFill = makeColorCva('fill', 'folder')
 const dynText = makeColorCva('color', 'accent')
 const dynBg = makeColorCva('bg', 'accent', '/30')
 
-export const HeroFolderButton = ({ content, num, setRef, color, onClick }) => {
-
+export const HeroFolderButton = ({ content, setRef, onClick }) => {
 
     let el
 
+    let color = content?.data?.color || 'gold'
+
     onMount(() => {
         if (!el) return
-        gsap.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power3.in", delay: 0.2 })
-        gsap.fromTo(el, { scale: 0 }, { scale: 1, duration: 1, ease: "power3.out" })
+        gsap.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power3.in" })
+        gsap.fromTo(el, { scale: 0 }, { scale: 1, duration: 0.1, ease: "power3.out" })
     })
 
     return (
@@ -44,7 +35,7 @@ export const HeroFolderButton = ({ content, num, setRef, color, onClick }) => {
                 bg: 'surface',
                 boxShadow: 'md',
                 _hover: {
-                    bg: 'surface.hover',
+                    bg: 'hover',
                     boxShadow: 'lg',
                 },
                 transitionTimingFunction: 'linear',
@@ -55,7 +46,12 @@ export const HeroFolderButton = ({ content, num, setRef, color, onClick }) => {
                 align: 'center',
                 gap: '1rem',
                 width: 'full',
-                maxWidth: '800px',
+                userSelect: 'text',
+                opacity: 0,
+                _dark: {
+                    border: '1px solid',
+                    borderColor: 'faint',
+                },
 
             })}>
             <div className={flex({
@@ -89,7 +85,7 @@ export const HeroFolderButton = ({ content, num, setRef, color, onClick }) => {
                             transform: 'translate(-50%, -50%)',
                             color: 'white',
                             
-                        })}>{num}</span>
+                        })}>{content?.data?.len}</span>
                     </div>
                     <div className={flex({
                         direction: 'column',
@@ -102,14 +98,14 @@ export const HeroFolderButton = ({ content, num, setRef, color, onClick }) => {
                             textWrap: 'pretty',
                             textAlign: { base: 'left', xxs: 'left' }
                         })} >
-                            {content.title}
+                            {content?.data?.title}
                         </h1>
                         <p className={css({
                             fontSize: { base: 'xs', xxs: 'sm' },
-                            color: 'text.muted',
+                            color: 'muted',
                             display: { base: 'block', xs: 'block' }
                         })}>
-                            {content.subtitle}
+                            {content?.data?.subtitle}
                         </p>
                     </div>
                 </div>
@@ -128,7 +124,7 @@ export const HeroFolderButton = ({ content, num, setRef, color, onClick }) => {
                     },
                         dynText.raw({ color })
                     )}>
-                        {content.pill}
+                        {content?.data?.pill}
                     </p>
                 </div>
             </div>

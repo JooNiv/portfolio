@@ -1,6 +1,10 @@
 {
     "id": "aboutme",
     "title": "About Me",
+    "subtitle": "Who?",
+    "pill": "README",
+    "color": "orange",
+    "index": 1,
     "len": 1,
     "tags": [
         "Working @ CSC",

@@ -3,7 +3,7 @@ import { css } from '../../styled-system/css'
 
 import { gsap } from "gsap"
 
-import { onMount, createSignal } from "solid-js";
+import { onMount, createSignal, Show, createEffect } from "solid-js";
 
 import { FolderContent } from "./folderContent"
 import { makeColorCva } from '../utils/cva'
@@ -12,42 +12,76 @@ const dynFill = makeColorCva('fill', 'folder')
 const dynText = makeColorCva('color', 'accent')
 const dynBg = makeColorCva('bg', 'accent', '/30')
 
-export const FolderButton = ({ folderContent, num=1, content, color }) => {
+export const FolderButton = (props) => {
 
     let buttonRef;
     let contentRef;
 
-    const [isOpen, setIsOpen] = createSignal(false)
+    let color = props.folderContent?.data?.color || 'blue'
+
+    const open = () => {
+
+        gsap.to(buttonRef, { 
+            borderBottomWidth: '0px', 
+            duration: 0, 
+        })
+
+        gsap.to(contentRef, { 
+            borderTopWidth: '0px', 
+            duration: 0, 
+        })
+
+        const tl = gsap.timeline()
+        tl.set(buttonRef, { borderRadius: '20px 20px 0 0', boxShadow: 'none' })
+        tl.call(() => { contentRef.style.visibility = 'visible' })
+        tl.fromTo(contentRef,
+            { opacity: 0, height: 0 },
+            { opacity: 1, height: 'auto', duration: 0.5, ease: "power2.inOut" }
+        )
+        tl.fromTo(contentRef.querySelectorAll('.content-element'),
+            { opacity: 0, scale: 0.8, y: 10 },
+            { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out(1.7)", stagger: 0.05 },
+            "-=0.2"
+        )
+    }
+
+    const close = () => {
+
+        gsap.to(buttonRef, { 
+            borderBottomWidth: '1px', 
+            duration: 0.3, 
+            ease: "power2.inOut" 
+        })
+
+
+        const tl = gsap.timeline()
+        tl.to(contentRef.querySelectorAll('.content-element'),
+            { opacity: 0, scale: 0.8, y: -10, duration: 0.2, ease: "power2.in", stagger: 0.03 }
+        )
+        tl.to(contentRef, {
+            opacity: 0, height: 0, duration: 0.5, ease: "power2.inOut",
+            onComplete: () => { contentRef.style.visibility = 'hidden' }
+        }, "-=0.1")
+        tl.set(buttonRef, { borderRadius: '20px', duration: 0.01 }, "-=0.3")
+    }
 
     const onClick = () => {
-        if (!isOpen()) {
-            const tl = gsap.timeline()
-            tl.set(buttonRef, { borderRadius: '20px 20px 0 0', boxShadow: 'none'})
-            tl.call(() => { contentRef.style.visibility = 'visible' })
-            tl.fromTo(contentRef,
-                { opacity: 0, height: 0 },
-                { opacity: 1, height: 'auto', duration: 0.5, ease: "power2.inOut" }
-            )
-            tl.fromTo(contentRef.querySelectorAll('.content-element'),
-                { opacity: 0, scale: 0.8, y: 10 },
-                { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out(1.7)", stagger: 0.05 },
-                "-=0.2"
-            )
-            setIsOpen(true)
+        if (!props.active) {
+            open()
+        } else {
+            close()
         }
-        else {
-            const tl = gsap.timeline()
-            tl.to(contentRef.querySelectorAll('.content-element'),
-                { opacity: 0, scale: 0.8, y: -10, duration: 0.2, ease: "power2.in", stagger: 0.03 }
-            )
-            tl.to(contentRef, {
-                opacity: 0, height: 0, duration: 0.5, ease: "power2.inOut",
-                onComplete: () => { contentRef.style.visibility = 'hidden' }
-            }, "-=0.1")
-            tl.set(buttonRef, { borderRadius: '20px', duration: 0.01 }, "-=0.3")
-            setIsOpen(false)
-        }
+        props.handleFolderClick()
     }
+
+    createEffect((prev) => {
+        const isActive = props.active
+        if (prev === true && isActive === false) {
+            close()
+        }
+        return isActive
+    })
+
 
     onMount(() => {
         gsap.fromTo(buttonRef, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power3.in", delay: 0.2 })
@@ -63,7 +97,7 @@ export const FolderButton = ({ folderContent, num=1, content, color }) => {
                     bg: 'surface',
                     boxShadow: 'md',
                     _hover: {
-                        bg: 'surface.hover',
+                        bg: 'hover',
                         boxShadow: 'lg',
                     },
                     transitionTimingFunction: 'linear',
@@ -74,8 +108,12 @@ export const FolderButton = ({ folderContent, num=1, content, color }) => {
                     align: 'center',
                     gap: '1rem',
                     width: 'full',
-                    maxWidth: '800px',
-
+                    borderColor: 'bg',
+                    userSelect: 'text',
+                    _dark: {
+                        border: '1px solid',
+                        borderColor: 'faint',
+                    },
                 })}>
                 <div className={flex({
                     width: 'full',
@@ -101,14 +139,16 @@ export const FolderButton = ({ folderContent, num=1, content, color }) => {
                         )}>
                             <path d="M2 10C2 8.343 3.343 7 5 7h8.172a2 2 0 011.414.586L16.414 9.414A2 2 0 0017.828 10H31a2 2 0 012 2v16a2 2 0 01-2 2H5a2 2 0 01-2-2V10z" />
                         </svg>
-                        <span className={css({
-                            position: 'absolute',
-                            top: '50%',
-                            left: '50%',
-                            transform: 'translate(-50%, -50%)',
-                            color: 'white',
-                            
-                        })}>{num}</span>
+                        <Show when={!props.active}>
+                            <span className={css({
+                                position: 'absolute',
+                                top: '50%',
+                                left: '50%',
+                                transform: 'translate(-50%, -50%)',
+                                color: 'white',
+                                
+                            })}>{props.folderContent?.data?.len}</span>
+                        </Show>
                     </div>
                         <div className={flex({
                             direction: 'column',
@@ -121,14 +161,14 @@ export const FolderButton = ({ folderContent, num=1, content, color }) => {
                                 textWrap: 'pretty',
                                 textAlign: { base: 'left', xxs: 'left' }
                             })} >
-                                {content.title}
+                                {props.folderContent?.data?.title}
                             </h1>
                             <p className={css({
                                 fontSize: { base: 'xs', xxs: 'sm' },
-                                color: 'text.muted',
+                                color: 'muted',
                                 display: { base: 'block', xs: 'block' }
                             })}>
-                                {content.subtitle}
+                                {props.folderContent?.data?.subtitle}
                             </p>
                         </div>
                     </div>
@@ -147,12 +187,12 @@ export const FolderButton = ({ folderContent, num=1, content, color }) => {
                         },
                             dynText.raw({ color })
                         )}>
-                            {content.pill}
+                            {props.folderContent?.data?.pill}
                         </p>
                     </div>
                 </div>
             </button>
-            <FolderContent folderContent={folderContent} ref={contentRef} color={color} />
+            <FolderContent folderContent={props.folderContent} ref={contentRef} />
         </div>
     )
 }

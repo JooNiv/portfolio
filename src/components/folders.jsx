@@ -3,22 +3,21 @@ import { cx } from '../../styled-system/css'
 
 import { FolderButton } from "./folderButton"
 
-import { For } from "solid-js"
+import { For, createSignal } from "solid-js"
 
-const COLORS = ['blue', 'orange', 'green', 'purple']
+import { VsDash } from 'solid-icons/vs'
 
 export const Folders = (props) => {
 
-    let buttonContents = [
-        { id: "projects", title: "Projects", subtitle: "Selected works", pill: "Src" },
-        { id: "aboutme", title: "About Me", subtitle: "Who?", pill: "README" },
-        { id: "skills", title: "Skills", subtitle: "What I know", pill: "Stack" },
-        { id: "contact", title: "Contact", subtitle: "Get in touch", pill: "Contact" },
-    ]
+    const [activeFolder, setActiveFolder] = createSignal(null)
 
-    const sortedFolderContent = buttonContents.map(content => props.folderContent.find(fc => fc?.data?.id === content.id))
-
-    console.log(sortedFolderContent)
+    const handleFolderClick = (folder) => {
+        if (activeFolder() === folder) {
+            setActiveFolder(null)
+            return
+        }
+        setActiveFolder(folder)
+    }
 
     return (
         <div
@@ -27,17 +26,17 @@ export const Folders = (props) => {
                 flex({
                     direction: 'column',
                     width: '100%',
-                    maxWidth: '800px',
                     gap: '1rem',
+                    color: 'muted',
                 }),
                 props.className
             )}>
-            <For each={COLORS} fallback={<div>No folders</div>}>
-                {(color, index) => (
-                    <FolderButton folderContent={sortedFolderContent[index()]} num={sortedFolderContent[index()]?.data?.len} key={color} content={buttonContents[index()]} color={color} />
+            <p className={flex({align: 'center'})} ><VsDash /> FILES </p>
+            <For each={props.folderContent} fallback={<div>No folders</div>}>
+                {(content) => (
+                    <FolderButton folderContent={content} key={content.data.id} active={activeFolder() === content} handleFolderClick={() => handleFolderClick(content)} />
                 )}
             </For>
-
         </div>
     )
 }

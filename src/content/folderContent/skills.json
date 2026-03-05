@@ -1,41 +1,46 @@
 {
     "id": "skills",
     "title": "Skills",
+    "subtitle": "Some stuff I know",
+    "pill": "Stack",
+    "color": "green",
+    "index": 2,
     "len": 6,
     "skills": {
         "Quantum": [
-            "Qiskit",
-            "Cirq",
-            "PennyLane"
+            {"name": "QM", "tip": "Quantum Mechanics"},
+            {"name": "Qiskit", "tip": "Quantum computing framework by IBM"},
+            {"name": "Cirq", "tip": "Quantum computing framework by Google"},
+            {"name": "PennyLane", "tip": "Quantum machine learning library"}
         ],
         "Programming": [
-            "Python",
-            "C++",
-            "Rust",
-            "JavaScript",
-            "Cuda"
+            {"name": "Python", "tip": "High-level programming language"},
+            {"name": "C++", "tip": "General-purpose programming language"},
+            {"name": "Rust", "tip": "Systems programming language"},
+            {"name": "JavaScript", "tip": "Scripting language for web development"},
+            {"name": "Cuda", "tip": "Parallel computing platform and programming model"}
         ],
         "Frontend": [
-            "React",
-            "Astro",
-            "Tailwind CSS",
-            "Panda CSS"
+            {"name": "React", "tip": "JavaScript library for building user interfaces"},
+            {"name": "Astro", "tip": "Static site generator"},
+            {"name": "Tailwind CSS", "tip": "Utility-first CSS framework"},
+            {"name": "Panda CSS", "tip": "CSS-in-JS library"}
         ],
         "Backend": [
-            "Express",
-            "FastAPI"
+            {"name": "Express", "tip": "Web application framework for Node.js"},
+            {"name": "FastAPI", "tip": "Modern, fast (high-performance) web framework for building APIs with Python"}
         ],
         "Tools": [
-            "Git",
-            "Docker",
-            "Linux",
-            "Uv"
+            {"name": "Git", "tip": "Version control system"},
+            {"name": "Docker", "tip": "Containerization platform"},
+            {"name": "Linux", "tip": "Operating system"},
+            {"name": "Uv", "tip": "Python virtual environment manager"}
         ],
         "Currently learning": [
-            "Qrisp",
-            "Flutter",
-            "SolidJS",
-            "GSAP"
+            {"name": "Qrisp", "tip": "Quantum programming language"},
+            {"name": "Flutter", "tip": "UI toolkit for building natively compiled applications for mobile, web, and desktop"},
+            {"name": "SolidJS", "tip": "Reactive JavaScript library for building user interfaces"},
+            {"name": "GSAP", "tip": "JavaScript animation library"}
         ]
     }
 }

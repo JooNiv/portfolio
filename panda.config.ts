@@ -10,11 +10,20 @@ export default defineConfig({
   // Files to exclude
   exclude: [],
 
+  globalCss: {
+    'html, body': {
+      fontFamily: 'sans',
+    },
+  },
+
   staticCss: {
     css: [
       {
         properties: {
           color: [
+            "text",
+            "muted",
+            "faint",
             "accent.blue",
             "accent.orange",
             "accent.green",
@@ -37,21 +46,54 @@ export default defineConfig({
           ],
           bg: [
             "accent.blue/30",
+            "accent.blue/10",
             "accent.orange/30",
+            "accent.orange/10",
             "accent.green/30",
+            "accent.green/10",
             "accent.purple/30",
+            "accent.purple/10",
             "accent.gold/30",
+            "accent.gold/10",
           ],
         },
       },
     ],
   },
 
+  conditions: {
+    extend: {
+      dark: '[data-theme="dark"] &',
+      light: '[data-theme="light"] &',
+    },
+  },
+
   // Useful for theme customization
   theme: {
     extend: {
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateX(-50%) translateY(4px)' },
+          '100%': { opacity: '1', transform: 'translateX(-50%) translateY(0)' },
+        },
+        tooltipIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        modalIn: {
+          '0%': { opacity: '0', transform: 'scale(0.95)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+      },
+      tokens: {
+        fonts: {
+          sans: { value: 'Righteous, Inter, ui-sans-serif, system-ui, sans-serif' },
+          serif: { value: 'Georgia, ui-serif, serif' },
+          mono: { value: '"Fira Code", ui-monospace, monospace' },
+        },
+      },
       breakpoints: {
-        xxs: '320px',
+        xxs: '380px',
         xs: '480px',
         sm: '640px',
         md: '768px',
@@ -62,89 +104,71 @@ export default defineConfig({
       semanticTokens: {
         colors: {
           bg: {
-            DEFAULT: { value: '#f0ede8' },
-            dark: { value: '#141210' }
+            value: { base: '#f0ede8', _dark: '#141210' },
           },
           surface: {
-            DEFAULT: { value: '#ffffff' },
-            dark: { value: '#1e1b18' },
-            hover: {
-              DEFAULT: { value: '#f7f5f2' },
-              dark: { value: '#252118' }
-            }
+            value: { base: '#ffffff', _dark: '#1e1b18' },
+          },
+          hover: {
+            value: { base: '#f7f5f2', _dark: '#252118' },
           },
           text: {
-            DEFAULT: { value: '#1a1714' },
-            dark: { value: '#f0ede8' },
-            muted: {
-              DEFAULT: { value: '#8a847c' },
-              dark: { value: '#8a847c' }
-            },
-            faint: {
-              DEFAULT: { value: '#c5bfb8' },
-              dark: { value: '#4a4540' }
-            },
-
+            value: { base: '#1a1714', _dark: '#f0ede8' },
+          },
+          muted: {
+            value: { base: '#8a847c', _dark: '#8a847c' },
+          },
+          faint: {
+            value: { base: '#c5bfb8', _dark: '#4a4540' },
           },
           border: {
-            DEFAULT: { value: '#e2ddd6' },
-            dark: { value: '#2e2a26' }
+            value: { base: '#e2ddd6', _dark: '#2e2a26' },
           },
           accent: {
             email: {
-              DEFAULT: { value: '#f3eef8' },
+              value: { base: '#f3eef8', _dark: '#2a2030' },
             },
             linkedin: {
-              DEFAULT: { value: '#eef1fa' },
+              value: { base: '#eef1fa', _dark: '#1e2230' },
             },
             github: {
-              DEFAULT: { value: '#edf6f1' },
+              value: { base: '#edf6f1', _dark: '#1e2e24' },
             },
             blue: {
-              DEFAULT: { value: '#4a5fa8' },
-              dark: { value: '#6b80c4' }
+              value: { base: '#4a5fa8', _dark: '#6b80c4' },
             },
             orange: {
-              DEFAULT: { value: '#d4522a' },
-              dark: { value: '#e8714d' }
+              value: { base: '#d4522a', _dark: '#e8714d' },
             },
             green: {
-              DEFAULT: { value: '#3a8a5c' },
-              dark: { value: '#5aaa78' }
+              value: { base: '#3a8a5c', _dark: '#5aaa78' },
             },
             purple: {
-              DEFAULT: { value: '#7a4fa8' },
-              dark: { value: '#9a72c4' }
+              value: { base: '#7a4fa8', _dark: '#9a72c4' },
             },
             gold: {
-              DEFAULT: { value: '#b07d2a' },
-              dark: { value: '#d4a44c' }
-            }
+              value: { base: '#b07d2a', _dark: '#d4a44c' },
+            },
           },
           folder: {
             blue: {
-              DEFAULT: { value: '#4a5fa8' },
-              dark: { value: '#6b80c4' }
+              value: { base: '#4a5fa8', _dark: '#6b80c4' },
             },
             orange: {
-              DEFAULT: { value: '#d4522a' },
-              dark: { value: '#e8714d' }
+              value: { base: '#d4522a', _dark: '#e8714d' },
             },
             green: {
-              DEFAULT: { value: '#3a8a5c' },
-              dark: { value: '#5aaa78' }
+              value: { base: '#3a8a5c', _dark: '#5aaa78' },
             },
             purple: {
-              DEFAULT: { value: '#7a4fa8' },
-              dark: { value: '#9a72c4' }
+              value: { base: '#7a4fa8', _dark: '#9a72c4' },
             },
             gold: {
-              DEFAULT: { value: '#b07d2a' },
-              dark: { value: '#d4a44c' }
-            }
-          }
-        }
-      }
+              value: { base: '#b07d2a', _dark: '#d4a44c' },
+            },
+          },
+        },
+      },
     },
   },
 

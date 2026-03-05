@@ -7,12 +7,15 @@ import { Hero } from '../components/hero.jsx';
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-
 const folderContent = await getCollection('folderContent');
+
+const heroContent = await getEntry('heroContent', 'hero');
+
+const sortedFolderContent = folderContent.sort((a, b) => a.data.index - b.data.index);
 
 ---
 
 
 <Layout>
-	<Hero folderContent={folderContent} client:load/>
+	<Hero folderContent={sortedFolderContent} heroContent={heroContent} client:load/>
 </Layout>

@@ -1,6 +1,85 @@
 {
     "id": "projects",
     "title": "Projects",
-    "len": 4,
-    "content": "Here are some of my projects!"
+    "subtitle": "Selected works",
+    "pill": "Src",
+    "color": "blue",
+    "index": 0,
+    "len": 5,
+    "projects": {
+        "QCut": {
+            "id": "qcut",
+            "title": "QCut",
+            "subtitle": "Quantum Circuit Knitting",
+            "icon": "/qcut.svg",
+            "color": "purple",
+            "tags": [
+                "Quantum",
+                "Python"
+            ],
+            "pill": "Highlight",
+            "description": "**QCut** is a **quantum circuit knitting** package built on top of **qiskit** for performing **gate cuts** and resetless **wire cuts** allowing simulation of larger **quantum circuits** on smaller quantum devices or simulators at the cost of a **circuit overhead**.",
+            "link": "https://github.com/jooniv/qcut"
+        },
+        "Portfolio": {
+            "id": "portfolio",
+            "title": "Portfolio Website",
+            "subtitle": "This website",
+            "icon": "/portfolio.svg",
+            "color": "orange",
+            "tags": [
+                "SolidJS",
+                "Astro",
+                "Panda CSS",
+                "GSAP"
+            ],
+            "pill": "Highlight",
+            "description": "**This website** is built using **Astro** and **SolidJS**. It features a custom design, smooth animations, and a responsive layout. The source code is available on GitHub.",
+            "link": "https://github.com/JooNiv/portfolio"
+        },
+        "QCutFind": {
+            "id": "qcutfind",
+            "title": "QCutFind",
+            "subtitle": "Quantum Circuit Partitioner",
+            "icon": "/qcutfind.svg",
+            "color": "blue",
+            "tags": [
+                "Python",
+                "Quantum",
+                "Qiskit",
+                "Metis"
+            ],
+            "pill": "Highlight",
+            "description": "**QCutFind** is a tool for finding optimal setas of wire and gate cuts in quantum circuits. It uses a graph-based approach to identify the best places to cut a quantum circuit in order to minimize the overhead of circuit knitting. QCutFind is built in to **QCut** and uses **Metis** for graph partitioning.",
+            "link": "https://github.com/JooNiv/qcut"
+        },
+        "FiQCI website": {
+            "id": "fiqciweb",
+            "title": "FiQCI website",
+            "subtitle": "Finnish Quantum Computing Infrastructure",
+            "icon": "/fiqci.svg",
+            "color": "green",
+            "tags": [
+                "React",
+                "Tailwind CSS",
+                "Jekyll",
+                "Motion"
+            ],
+            "pill": "Highlight",
+            "description": "The official website for the **Finnish Quantum Computing Infrastructure (FiQCI)**. The website provides information about the project, its goals, its members, and details and status of available **Quantum Computers**. It also features a blog where updates and news about the project are posted.",
+            "link": "https://fiqci.org"
+        },
+        "Mood Pixels": {
+            "id": "moodpixels",
+            "title": "Mood Pixels",
+            "subtitle": "A mood tracking app",
+            "icon": "/moodpixels.svg",
+            "color": "orange",
+            "tags": [
+                "Flutter"
+            ],
+            "pill": "Highlight",
+            "description": "**Mood Pixels** is a **mood tracking app** built with **Flutter**. It allows users to track their daily moods and view statistics. The app features a simple and intuitive interface, customizable mood categories, and data visualization tools.",
+            "link": "https://github.com/JooNiv/dag_project1"}
+    }
 }

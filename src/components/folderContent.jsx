@@ -7,6 +7,7 @@ import { Switch, Match } from "solid-js"
 import { AboutMe } from './aboutme'
 import { Skills } from './skills'
 import { Contact } from './contact'
+import { Projects } from './projects'
 
 const dynBorder = makeColorCva('borderColor', 'accent')
 
@@ -19,14 +20,21 @@ export const FolderContent = (props) => {
                 borderRadius: '0 0 20px 20px',
                 width: 'full',
                 height: "0px",
-                overflow: 'scroll',
+                overflow: 'auto',
+                overflowX: 'hidden',
                 visibility: 'hidden',
                 maxHeight: '350px',
+                borderColor: 'bg',
+                paddingBottom: '1rem',
+                _dark: {
+                    border: '1px solid',
+                    borderTopWidth: '0px',
+                    borderColor: 'faint',
+                },
             })}>
             <div className={flex({
                 gap: '1rem',
                 paddingX: {base: '1rem', xs:'2rem'},
-                paddingY: '0.5rem',                
             })}>
                 <div className={css(
                     {
@@ -37,13 +45,13 @@ export const FolderContent = (props) => {
                         paddingBottom: '1rem',
                         paddingTop: '1rem',
                         gap: '1rem',
-                        color: 'text.muted',
+                        color: 'muted',
                     },
-                    dynBorder.raw({ color: props.color })
+                    dynBorder.raw({ color: props.folderContent?.data?.color })
                 )}>
                     
 
-                    <Switch fallback={<div>Not Found</div>}>
+                    <Switch fallback={<div class="content-element">Not Found</div>}>
                     <Match when={props.folderContent?.data?.id === "aboutme"}>
                         <AboutMe folderContent={props.folderContent} />
                     </Match>
@@ -52,6 +60,9 @@ export const FolderContent = (props) => {
                     </Match>
                     <Match when={props.folderContent?.data?.id === "contact"}>
                         <Contact folderContent={props.folderContent} />
+                    </Match>
+                    <Match when={props.folderContent?.data?.id === "projects"}>
+                        <Projects folderContent={props.folderContent} />
                     </Match>
                     </Switch>
                     

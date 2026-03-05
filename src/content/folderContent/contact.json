@@ -1,6 +1,10 @@
 {
     "id": "contact",
     "title": "Contact",
+    "subtitle": "Get in touch!",
+    "pill": "Contact",
+    "color": "purple",
+    "index": 3,
     "len": 3,
     "links": {
         "Email": {
@@ -8,21 +12,24 @@
             "url": "joonas.nivala@gmail.com",
             "href": "mailto:joonas.nivala@gmail.com",
             "text": "Email",
-            "icon": "envelope"
+            "icon": "envelope",
+            "color": "orange"
         },
         "LinkedIn": {
             "id": "linkedin",
             "url": "linkedin.com/in/joonasnivala/",
             "href": "https://linkedin.com/in/joonasnivala/",
             "text": "LinkedIn",
-            "icon": "linkedin"
+            "icon": "linkedin",
+            "color": "blue"
         },
         "GitHub": {
             "id": "github",
             "url": "github.com/jooniv",
             "href": "https://www.github.com/jooniv",
             "text": "GitHub",
-            "icon": "github"
+            "icon": "github",
+            "color": "green"
         }
     }
 }
