@@ -1,8 +1,12 @@
-# Joonas Nivala — Portfolio
+# Joonas Nivala - Portfolio
 
 Personal portfolio website built with **Astro** and **SolidJS**, featuring a file-explorer-inspired UI, smooth GSAP animations, and a dark/light theme.
 
-**Live site:** [jooniv.github.io/portfolio](https://jooniv.fi)
+**Live site:** [https://jooniv.fi](https://jooniv.fi)
+
+![alt text](readme-assets/image.png)
+
+![alt text](readme-assets/image-1.png)
 
 ---
 
