@@ -1,12 +1,15 @@
 import { css } from '../../../styled-system/css'
+import { flex } from '../../../styled-system/patterns'
 import { createSignal, Show, createEffect, onCleanup } from "solid-js"
 import { Portal } from "solid-js/web"
 import { AiOutlineClose } from 'solid-icons/ai'
 
 const [modalContent, setModalContent] = createSignal(null)
+const [modalTitle, setModalTitle] = createSignal("")
 
-export const openModal = (content) => {
+export const openModal = (content, title) => {
     setModalContent(() => content)
+    setModalTitle(() => title)
 }
 
 export const closeModal = () => {
@@ -110,12 +113,16 @@ export const Modal = () => {
                         })}
                     >
                         {/* Close button */}
-                        <div className={css({
-                            display: 'flex',
-                            justifyContent: 'flex-end',
+                        <div className={flex({
+                            direction: 'row',
+                            justifyContent: 'space-between',
                             paddingRight: '1rem',
+                            paddingLeft: '1.5rem',
                             paddingTop: '1rem',
                         })}>
+                            <div>
+                                {modalTitle()}
+                            </div>
                             <button
                                 onClick={closeModal}
                                 className={css({

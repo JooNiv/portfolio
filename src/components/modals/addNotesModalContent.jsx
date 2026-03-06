@@ -11,7 +11,7 @@ import { BasicButton } from '../ui/basicButton';
 import { addNote } from '../../utils/notesAPI'
 
 export const openAddNotesModal = (setNotes) => {
-    openModal(() => <AddNotesModalContent setNotes={setNotes}/>)
+    openModal(() => <AddNotesModalContent setNotes={setNotes}/>, "Add Note")
 }
 
 const AddNotesModalContent = (props) => {

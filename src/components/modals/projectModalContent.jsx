@@ -15,7 +15,7 @@ const iconMap = projectIconMap
 let dynBg = dynBgLight
 
 export const openProjectModal = (project) => {
-    openModal(() => <ProjectModalContent project={/*@once*/ project} />)
+    openModal(() => <ProjectModalContent project={/*@once*/ project} />, "")
 }
 
 const ProjectModalContent = (props) => {

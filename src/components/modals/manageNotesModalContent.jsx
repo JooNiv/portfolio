@@ -7,7 +7,7 @@ import { deleteNote } from '../../utils/notesAPI';
 import { getToken } from '../../utils/loginAPI';
 
 export const openManageNotesModal = (setNotes, notes) => {
-    openModal(() => <ManageNotesModalContent setNotes={setNotes} notes={notes} />)
+    openModal(() => <ManageNotesModalContent setNotes={setNotes} notes={notes} />, "Manage Notes")
 }
 
 const ManageNotesModalContent = (props) => {

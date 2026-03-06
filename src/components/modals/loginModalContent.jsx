@@ -9,7 +9,7 @@ import { BasicButton } from '../ui/basicButton';
 import { login } from '../../utils/loginAPI'
 
 export const openLoginModal = (isAdmin, setIsAdmin) => {
-    openModal(() => <LoginModalContent isAdmin={isAdmin} setIsAdmin={setIsAdmin} />)
+    openModal(() => <LoginModalContent isAdmin={isAdmin} setIsAdmin={setIsAdmin} />, "Admin Login")
 }
 
 const LoginModalContent = (props) => {
