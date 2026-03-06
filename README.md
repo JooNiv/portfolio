@@ -6,7 +6,7 @@ Personal portfolio website built with **Astro** and **SolidJS**, featuring a fil
 
 ---
 
-## ✨ Features
+## Features
 
 - Folder-based navigation with animated open/close transitions
 - Dark/light theme with system preference detection
