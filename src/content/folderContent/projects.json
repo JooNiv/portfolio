@@ -48,7 +48,7 @@
                 "Salvo"
             ],
             "pill": "New",
-            "description": "**Portfolio Backend** is a simple backend server built with **Rust** and the **Salvo** web framework. It provides an API for managing the notes for the portfolio website and some admin functionality using JWT authentication.",
+            "description": "**Portfolio Backend** is a simple backend server built with **Rust** and the **Salvo** web framework with Docker compose configured for easy deployment. It provides an API for managing the notes for the portfolio website and some admin functionality using JWT authentication.",
             "link": "https://github.com/JooNiv/portfolio-backend"
         },
         "QCutFind": {
