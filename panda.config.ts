@@ -116,10 +116,10 @@ export default defineConfig({
             value: { base: '#1a1714', _dark: '#f0ede8' },
           },
           muted: {
-            value: { base: '#8a847c', _dark: '#8a847c' },
+            value: { base: '#5f5a54', _dark: '#8a847c' },
           },
           faint: {
-            value: { base: '#c5bfb8', _dark: '#4a4540' },
+            value: { base: '#988d81', _dark: '#6d665f' },
           },
           border: {
             value: { base: '#e2ddd6', _dark: '#2e2a26' },
