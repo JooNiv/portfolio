@@ -4,6 +4,16 @@ Personal portfolio website built with **Astro** and **SolidJS**, featuring a fil
 
 **Live site:** [https://jooniv.fi](https://jooniv.fi)
 
+## Table of Contents
+
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Commands](#commands)
+- [Project Structure](#project-structure)
+
+---
+
 ![alt text](readme-assets/image.png)
 
 ![alt text](readme-assets/image-1.png)
