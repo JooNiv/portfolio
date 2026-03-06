@@ -1,13 +1,16 @@
 import { flex } from '../../../styled-system/patterns'
 import { css, cx } from '../../../styled-system/css'
 import { dynText } from '../../utils/cva'
-
-
+import { createSignal, onMount } from 'solid-js'
 
 const COLORS = ['gold', 'blue', 'orange', 'green', 'purple']
 
 export const Intro = (props) => {
-    const randomColor = COLORS[Math.floor(Math.random() * COLORS.length)]
+    const [randomColor, setRandomColor] = createSignal('gold')
+
+    onMount(() => {
+        setRandomColor(COLORS[Math.floor(Math.random() * COLORS.length)])
+    })
 
     return (
         <div
@@ -28,7 +31,7 @@ export const Intro = (props) => {
                 fontSize: '4rem',
             })}>
                 <h1 className={css({ fontWeight: 'bold', color: 'text' })}> Joonas </h1>
-                <h1 className={cx(css({ fontWeight: 'bold' }), dynText({ color: randomColor }))}> Nivala </h1>
+                <h1 className={cx(css({ fontWeight: 'bold' }), dynText({ color: randomColor() }))}> Nivala </h1>
 
             </div>
             <div className={flex({
