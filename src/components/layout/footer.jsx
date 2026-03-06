@@ -1,9 +1,10 @@
 import { flex } from '../../../styled-system/patterns'
-import { ThemeSwitcher } from '../themeSwitcher'
+
+import { openLoginModal } from '../modals/loginModalContent'
 
 import { AiOutlineCopyrightCircle } from 'solid-icons/ai'
 
-export const Footer = () => {
+export const Footer = (props) => {
     return (
         <div className={flex({
             direction: {base: 'column', xs: 'row'},
@@ -21,7 +22,7 @@ export const Footer = () => {
             })}>
                 <AiOutlineCopyrightCircle />
                 <p> 2026 </p>
-                <p> Joonas Nivala</p>
+                <p onClick={() => openLoginModal(props.isAdmin, props.setIsAdmin) } > Joonas Nivala {props.isAdmin() ? 'Admin' : ''}</p>
             
             </div>
             <div className={flex({

@@ -5,10 +5,14 @@ import { For, createSignal, createEffect, onMount, Show } from "solid-js"
 
 import { openAddNotesModal } from '../modals/addNotesModalContent'
 
+import { openManageNotesModal } from '../modals/manageNotesModalContent'
+
 import { NoteCard } from '../ui/noteCard'
 
 import { VsDash } from 'solid-icons/vs'
 import { BasicButton } from '../ui/basicButton'
+
+import { fetchNotes } from '../../utils/notesAPI'
 
 export const Notes = (props) => {
 
@@ -17,17 +21,7 @@ export const Notes = (props) => {
     let containerRef;
     let carouselRef;
 
-    const testNotes = [
-        { content: "This is a note.", author: "Alice" },
-        { content: "This is another note.", author: "Bob" },
-        { content: "This is yet another note.", author: "Charlie" },
-        { content: "This is a fourth note.", author: "David" },
-        { content: "This is a fifth note.", author: "Eve" },
-        { content: "This is a sixth note.", author: "Frank" },
-
-    ]
-
-    const [notes, setNotes] = createSignal(testNotes)
+    const [notes, setNotes] = createSignal([])
 
     const checkOverflow = () => {
         if (!carouselRef || !containerRef) return false;
@@ -52,6 +46,7 @@ export const Notes = (props) => {
     })
 
     onMount(() => {
+        fetchNotes().then(setNotes).catch(err => console.error("Failed to fetch notes:", err));
         const el = containerRef?.parentElement;
         if (!el) return;
         el.addEventListener('check-overflow', checkAndSetOverflow);
@@ -78,7 +73,8 @@ export const Notes = (props) => {
                 gap: { base: '0.5rem', sm: '2rem' }
             })}>
                 <p className={flex({ align: 'center' })} ><VsDash /> NOTES </p>
-                <div className={flex({ direction: 'row', gap: '1rem' })}>
+                <div className={flex({ direction: 'row', gap: '1rem', flexWrap: 'wrap' })}>
+                    
                     <Show when={overflows()}>
                         <BasicButton
                             onClick={
@@ -97,11 +93,19 @@ export const Notes = (props) => {
                             {pauseText()}
                         </BasicButton>
                     </Show>
+                    
                     <BasicButton
                         onClick={() => openAddNotesModal(setNotes)}
                     >
                         Add Note
                     </BasicButton>
+                    <Show when={props.isAdmin()}>
+                        <BasicButton
+                            onClick={() => openManageNotesModal(setNotes, notes)}
+                        >
+                            Manage
+                        </BasicButton>
+                    </Show>
                 </div>
             </div>
             <div

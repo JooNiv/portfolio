@@ -7,6 +7,7 @@ export const NoteCard = (props) => {
             direction: 'column',
             gap: '1rem',
             padding: '1rem',
+            maxWidth: {base: '150px', sm: '250px'},
             _light: {
                 boxShadow: 'md',
             },

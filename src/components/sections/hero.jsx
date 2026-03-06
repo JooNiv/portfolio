@@ -1,7 +1,6 @@
 import { flex } from '../../../styled-system/patterns'
 import { css } from '../../../styled-system/css'
 
-import { FolderButton } from '../folder/folderButton'
 import { HeroFolderButton } from '../folder/heroFolderButton'
 import { Folders } from '../sections/folders'
 import { Header } from '../layout/header'
@@ -12,13 +11,31 @@ import { Modal } from '../layout/modal'
 
 import { gsap } from "gsap"
 
+import { createSignal, onMount } from 'solid-js'
+
+import { checkAuth, getToken } from '../../utils/loginAPI'
+
 export const Hero = ({folderContent, heroContent}) => {
+
+    const [isAdmin, setIsAdmin] = createSignal(false)
 
     let foldersRef;
     let buttonRef;
     let heroRef;
     let introRef;
     let notesRef;
+
+    onMount(async () => {
+        const token = await getToken()
+        if (token) {
+            checkAuth(token)
+                .then(() => setIsAdmin(true))
+                .catch((err) => {
+                    console.error("Authentication check failed:", err)
+                    setIsAdmin(false)
+                })
+        }
+    })
 
     const onClick = () => {
         if (!buttonRef || !foldersRef) return
@@ -90,7 +107,7 @@ export const Hero = ({folderContent, heroContent}) => {
 
             <Intro setRef={(el) => (introRef = el)}/>
 
-            <Notes setRef={(el) => (notesRef = el)} />
+            <Notes setRef={(el) => (notesRef = el)} isAdmin={isAdmin} />
             
             <div ref={(el) => (heroRef = el)} className={flex({
                 direction: 'column',
@@ -107,7 +124,7 @@ export const Hero = ({folderContent, heroContent}) => {
             })} />
             </div>
 
-            <Footer />
+            <Footer isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
             <Modal />
         </div>
     )

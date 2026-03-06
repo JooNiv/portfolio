@@ -2,44 +2,39 @@ import { css } from '../../../styled-system/css'
 import { flex } from '../../../styled-system/patterns'
 import { openModal, closeModal } from '../layout/modal'
 
-import { createSignal } from 'solid-js'
-
-import { isProfane } from 'no-profanity';
+import { createSignal, Show } from 'solid-js'
 
 import { BasicButton } from '../ui/basicButton';
 
-import { addNote } from '../../utils/notesAPI'
+import { login } from '../../utils/loginAPI'
 
-export const openAddNotesModal = (setNotes) => {
-    openModal(() => <AddNotesModalContent setNotes={setNotes}/>)
+export const openLoginModal = (isAdmin, setIsAdmin) => {
+    openModal(() => <LoginModalContent isAdmin={isAdmin} setIsAdmin={setIsAdmin} />)
 }
 
-const AddNotesModalContent = (props) => {
+const LoginModalContent = (props) => {
 
-    const [noteText, setNoteText] = createSignal("")
-    const [authorName, setAuthorName] = createSignal("")
+    const [username, setUsername] = createSignal("")
+    const [password, setPassword] = createSignal("")
     const [error, setError] = createSignal("")
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (!noteText() || !authorName()) {
+        if (!username() || !password()) {
             setError("Please fill in all fields.")
             return
         }
-        else if (noteText().length > 30 || authorName().length > 30) {
-            setError("Fields must be 30 characters or less.")
-            return
-        }
-        else if (isProfane(noteText()) || isProfane(authorName())) {
-            setError("Bruh.")
-            return
-        }
         setError("")
-        addNote({ content: noteText(), author: authorName() })
-            .then((newNote) => {
-                props.setNotes((prev) => [...prev, newNote])
+        login(username(), password())
+            .then((token) => {
+                document.cookie = `token=${token.token}; path=/; secure; samesite=strict`
+                props.setIsAdmin(true)
             })
-            .catch((err) => console.error("Failed to add note:", err))
+            .catch((err) => {
+                props.setIsAdmin(false)
+                console.error("Failed to login:", err)
+                setError("Invalid username or password.")
+            })
         closeModal()
     }
 
@@ -56,11 +51,12 @@ const AddNotesModalContent = (props) => {
                 color: 'muted'
             })}>
                 <form onSubmit={handleSubmit}>
+                    <Show when={!props.isAdmin()}>
                     <input
                         type="text"
-                        placeholder="New note"
-                        value={noteText()}
-                        onInput={(e) => setNoteText(e.target.value)}
+                        placeholder="Username"
+                        value={username()}
+                        onInput={(e) => setUsername(e.target.value)}
                         className={css({
                             padding: '0.5rem 1rem',
                             borderRadius: '4px',
@@ -73,10 +69,10 @@ const AddNotesModalContent = (props) => {
                         })}
                     />
                     <input
-                        type="text"
-                        placeholder="Author name"
-                        value={authorName()}
-                        onInput={(e) => setAuthorName(e.target.value)}
+                        type="password"
+                        placeholder="Password"
+                        value={password()}
+                        onInput={(e) => setPassword(e.target.value)}
                         className={css({
                             padding: '0.5rem 1rem',
                             borderRadius: '4px',
@@ -89,7 +85,19 @@ const AddNotesModalContent = (props) => {
                         })}
                     />
                     {error() && <p className={css({ color: 'accent.orange/70', marginBottom: '1rem' })}>{error()}</p>}
-                    <BasicButton type="submit" children="Add Note" />
+                    </Show>
+                    <Show when={!props.isAdmin()}>
+                        
+                        <BasicButton type="submit" children="Login" />
+                    </Show>
+                    <Show when={props.isAdmin()}>
+                        <p> Logged in as admin</p>
+                        <BasicButton children="Logout" onClick={() => {
+                            document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT"
+                            props.setIsAdmin(false)
+                            closeModal()
+                        }} />
+                    </Show>
                     
                 </form>
             </div>
