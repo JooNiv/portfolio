@@ -2,7 +2,7 @@
 
 Personal portfolio website built with **Astro** and **SolidJS**, featuring a file-explorer-inspired UI, smooth GSAP animations, and a dark/light theme.
 
-**Live site:** [jooniv.github.io/portfolio](https://jooniv.github.io/portfolio)
+**Live site:** [jooniv.github.io/portfolio](https://jooniv.fi)
 
 ---
 
