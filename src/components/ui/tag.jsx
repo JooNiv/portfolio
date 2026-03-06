@@ -59,7 +59,8 @@ export const Tag = (props) => {
                             zIndex: 9999,
                             pointerEvents: 'none',
                             animation: 'tooltipIn 0.15s ease-out',
-                        })}
+                            maxWidth: '150px',
+                            })}
                         style={{
                             left: `${pos().x}px`,
                             top: `${pos().y}px`,
@@ -75,7 +76,7 @@ export const Tag = (props) => {
                                 color: 'muted',
                                 fontSize: 'xs',
                                 fontWeight: 'medium',
-                                whiteSpace: 'nowrap',
+                                //whiteSpace: 'nowrap',
                                 boxShadow: 'md',
                                 border: '1px solid',
                                 borderColor: 'faint',
