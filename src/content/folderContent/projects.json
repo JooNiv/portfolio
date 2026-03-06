@@ -5,7 +5,7 @@
     "pill": "Src",
     "color": "blue",
     "index": 0,
-    "len": 5,
+    "len": 6,
     "projects": {
         "QCut": {
             "id": "qcut",
@@ -37,6 +37,20 @@
             "description": "**This website** is built using **Astro** and **SolidJS**. It features a custom design, smooth animations, and a responsive layout. The source code is available on GitHub.",
             "link": "https://github.com/JooNiv/portfolio"
         },
+        "PortfolioBackend": {
+            "id": "portfoliobackend",
+            "title": "Portfolio Backend",
+            "subtitle": "Backend for the portfolio website",
+            "icon": "/portfolio.svg",
+            "color": "green",
+            "tags": [
+                "Rust",
+                "Salvo"
+            ],
+            "pill": "New",
+            "description": "**Portfolio Backend** is a simple backend server built with **Rust** and the **Salvo** web framework. It provides an API for managing the notes for the portfolio website and some admin functionality using JWT authentication.",
+            "link": "https://github.com/JooNiv/portfolio-backend"
+        },
         "QCutFind": {
             "id": "qcutfind",
             "title": "QCutFind",
@@ -67,7 +81,7 @@
             ],
             "pill": "Work",
             "description": "The official website for the **Finnish Quantum Computing Infrastructure (FiQCI)**. The website provides information about the project, its goals, its members, and details and status of available **Quantum Computers**. It also features a blog where updates and news about the project are posted.",
-            "link": "https://fiqci.org"
+            "link": "https://fiqci.fi"
         },
         "Mood Pixels": {
             "id": "moodpixels",
