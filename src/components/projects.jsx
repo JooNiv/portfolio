@@ -49,13 +49,15 @@ export const Projects = (props) => {
             <For each={Object.entries(props.folderContent?.data?.projects)} fallback={<div>No projects</div>}>
                 
                 {([key, project]) => 
-                <a  
+                <div 
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === 'Enter' && openProjectModal(project)}
                     onClick={(e) => {
                         e.preventDefault()
                         openProjectModal(project)
                     }}
-                    target="_blank" 
-                    rel="noopener noreferrer"
+                    
                     className={cx(
                         "content-element",
                         flex({
@@ -185,7 +187,7 @@ export const Projects = (props) => {
                     })} />
                 </button>
                 
-                </a>
+                </div>
                 }
             </For>
         </div>
