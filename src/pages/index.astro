@@ -16,5 +16,5 @@ const sortedFolderContent = folderContent.sort((a, b) => a.data.index - b.data.i
 
 
 <Layout>
-	<Hero folderContent={sortedFolderContent} heroContent={heroContent} client:idle/>
+	<Hero folderContent={sortedFolderContent} heroContent={heroContent} client:load/>
 </Layout>
