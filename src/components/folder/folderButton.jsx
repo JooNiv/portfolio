@@ -6,7 +6,9 @@ import { gsap } from "gsap"
 import { onMount, Show, createEffect } from "solid-js";
 
 import { FolderContent } from "./folderContent"
-import { dynFill, dynText, dynBg } from '../../utils/cva'
+import { dynFill, dynText, dynBgLight } from '../../utils/cva'
+
+const dynBg = dynBgLight;
 
 export const FolderButton = (props) => {
 

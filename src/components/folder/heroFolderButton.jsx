@@ -6,7 +6,9 @@ import { gsap } from "gsap"
 
 import { onMount } from "solid-js";
 
-import { dynFill,dynText, dynBg } from '../../utils/cva'
+import { dynFill,dynText, dynBgLight } from '../../utils/cva'
+
+const dynBg = dynBgLight;
 
 export const HeroFolderButton = ({ content, setRef, onClick }) => {
 
