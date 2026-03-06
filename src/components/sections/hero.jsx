@@ -75,7 +75,9 @@ export const Hero = ({folderContent, heroContent}) => {
     }
 
     return (
-        <div className={flex({
+        <div 
+            role="main"
+            className={flex({
             direction: 'column',
             bg: 'transparent',
             align: 'center',
