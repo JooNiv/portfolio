@@ -115,12 +115,15 @@ export const Modal = () => {
                         {/* Close button */}
                         <div className={flex({
                             direction: 'row',
-                            justifyContent: 'space-between',
+                            justify: 'space-between',
+                            align: 'center',
                             paddingRight: '1rem',
                             paddingLeft: '1.5rem',
                             paddingTop: '1rem',
                         })}>
-                            <div>
+                            <div className={css({
+                                color: 'text',
+                            })}>
                                 {modalTitle()}
                             </div>
                             <button
