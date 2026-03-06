@@ -7,16 +7,25 @@ import { flex } from "../../styled-system/patterns";
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/svg+xml" href="portfolio/favicon.svg" />
+		<link rel="icon" href="portfolio/favicon.ico" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Righteous&family=VT323&display=swap"
-			rel="stylesheet"
-		/>
+            rel="preload"
+            as="style"
+            href="https://fonts.googleapis.com/css2?family=Righteous&family=VT323&display=swap"
+            onload="this.onload=null;this.rel='stylesheet'"
+        />
+        <noscript>
+            <link
+                href="https://fonts.googleapis.com/css2?family=Righteous&family=VT323&display=swap"
+                rel="stylesheet"
+            />
+        </noscript>
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="description" content="Joonas Nivala's personal portfolio website" />
+		<title>Joonas Nivala</title>
 		<script is:inline>
 			const theme =
 				localStorage.getItem("theme") ||
@@ -33,7 +42,7 @@ import { flex } from "../../styled-system/patterns";
 			bg: "bg",
 		})}
 	>
-		<slot />
+			<slot />
 	</body>
 </html>
 
