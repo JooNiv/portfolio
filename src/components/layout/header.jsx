@@ -31,6 +31,7 @@ export const Header = () => {
             top: '1rem',
             zIndex: 100,
             direction: 'row',
+            maxWidth: '1000px',
             justify: 'space-between',
             color: 'muted',
             width: '100%',
