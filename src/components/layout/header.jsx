@@ -27,16 +27,17 @@ export const Header = () => {
 
     return (
         <div className={flex({
-            position: 'sticky',
+            position: 'fixed',
             top: '1rem',
-            zIndex: 10,
+            zIndex: 100,
             direction: 'row',
             justify: 'space-between',
             color: 'muted',
             width: '100%',
             height: '4rem',
             align: 'center',
-            transition: 'transform 0.2s'
+            transition: 'transform 0.2s',
+            padding: '2rem'
         })}>
             <div ref={el => headerRef = el} className={flex({
                 direction: 'row',
