@@ -5,7 +5,7 @@
     "pill": "Src",
     "color": "blue",
     "index": 0,
-    "len": 6,
+    "len": 7,
     "projects": {
         "QCut": {
             "id": "qcut",
@@ -67,20 +67,32 @@
             "description": "**QCutFind** is a tool for finding optimal setas of wire and gate cuts in quantum circuits. It uses a graph-based approach to identify the best places to cut a quantum circuit in order to minimize the overhead of circuit knitting. QCutFind is built in to **QCut** and uses **Metis** for graph partitioning.",
             "link": "https://github.com/JooNiv/qcut"
         },
-        "FiQCI website": {
-            "id": "fiqciweb",
-            "title": "FiQCI website",
-            "subtitle": "Finnish Quantum Computing Infrastructure",
-            "icon": "/fiqci.svg",
+        "Entanglement Game Frontend": {
+            "id": "entanglementgamefrontend",
+            "title": "Entanglement Game Frontend",
+            "subtitle": "Frontend for the entanglement game",
+            "icon": "/entanglementgame.svg",
             "color": "green",
             "tags": [
                 "React",
-                "Tailwind CSS",
-                "Jekyll",
-                "Motion"
+                "Tailwind CSS"
             ],
             "pill": "Work",
-            "description": "The official website for the **Finnish Quantum Computing Infrastructure (FiQCI)**. The website provides information about the project, its goals, its members, and details and status of available **Quantum Computers**. It also features a blog where updates and news about the project are posted.",
+            "description": "**Entanglement Game Frontend** is the frontend for a quantum computing educational game called **Entanglement Game**. The game is designed to teach players about quantum entanglement with simple gameplay. The frontend is built with **React** and styled with **Tailwind CSS**.",
+            "link": "https://fiqci.fi"
+        },
+        "Entanglement Game Backend": {
+            "id": "entanglementgamebackend",
+            "title": "Entanglement Game Backend",
+            "subtitle": "Backend for the entanglement game",
+            "icon": "/entanglementgame.svg",
+            "color": "blue",
+            "tags": [
+                "Python",
+                "FastAPI"
+            ],
+            "pill": "Work",
+            "description": "**Entanglement Game Backend** is the backend for a quantum computing educational game called **Entanglement Game**. The game is designed to teach players about quantum entanglement with simple gameplay. The backend is built with **Python** and the **FastAPI** web framework utilising **websockets** for real-time elements and simple token based authentication.",
             "link": "https://fiqci.fi"
         },
         "Mood Pixels": {
