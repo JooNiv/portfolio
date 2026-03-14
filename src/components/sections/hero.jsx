@@ -3,21 +3,20 @@ import { css } from '../../../styled-system/css'
 
 import { HeroFolderButton } from '../folder/heroFolderButton'
 import { Folders } from '../sections/folders'
-import { Header } from '../layout/header'
-import { Footer } from '../layout/footer'
 import { Intro } from './intro'
 import { Notes } from './notes'
-import { Modal } from '../layout/modal'
 
 import { gsap } from "gsap"
 
-import { createSignal, onMount } from 'solid-js'
+import { onMount } from 'solid-js'
 
 import { checkAuth, getToken } from '../../utils/loginAPI'
 
-export const Hero = ({folderContent, heroContent}) => {
+import { useAdmin } from '../state/adminState'
 
-    const [isAdmin, setIsAdmin] = createSignal(false)
+export const Hero = ({ folderContent, heroContent }) => {
+
+    const [isAdmin, setIsAdmin] = useAdmin()
 
     let foldersRef;
     let buttonRef;
@@ -72,14 +71,14 @@ export const Hero = ({folderContent, heroContent}) => {
                 })
             })
         })
-        tl.fromTo(introRef, 
+        tl.fromTo(introRef,
             { opacity: 0, y: 30 },
             { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }
         )
 
-        tl.fromTo(foldersRef, 
+        tl.fromTo(foldersRef,
             { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 0.5, ease: "power3.out"},
+            { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
             "-=0.5"
         )
 
@@ -92,23 +91,11 @@ export const Hero = ({folderContent, heroContent}) => {
     }
 
     return (
-        <div 
-            role="main"
-            className={flex({
-            direction: 'column',
-            bg: 'transparent',
-            align: 'center',
-            maxWidth: '1000px',
-            minHeight: '100vh',
-            width: 'full',
-            padding: '2rem',
-        })}>
-            <Header />
-
-            <Intro setRef={(el) => (introRef = el)}/>
+        <>
+            <Intro setRef={(el) => (introRef = el)} />
 
             <Notes setRef={(el) => (notesRef = el)} isAdmin={isAdmin} />
-            
+
             <div ref={(el) => (heroRef = el)} className={flex({
                 direction: 'column',
                 align: 'center',
@@ -117,15 +104,12 @@ export const Hero = ({folderContent, heroContent}) => {
                 width: 'full',
                 gap: '2rem',
             })}>
-            
-            <HeroFolderButton content={heroContent} setRef={(el) => (buttonRef = el)} onClick={onClick} />
-            <Folders folderContent={folderContent} setRef={(el) => (foldersRef = el)} className={css({
-                display: 'none',
-            })} />
-            </div>
 
-            <Footer isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
-            <Modal />
-        </div>
+                <HeroFolderButton content={heroContent} setRef={(el) => (buttonRef = el)} onClick={onClick} />
+                <Folders folderContent={folderContent} setRef={(el) => (foldersRef = el)} className={css({
+                    display: 'none',
+                })} />
+            </div>
+        </>
     )
 }

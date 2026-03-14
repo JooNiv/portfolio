@@ -4,16 +4,20 @@ import { openLoginModal } from '../modals/loginModalContent'
 
 import { AiOutlineCopyrightCircle } from 'solid-icons/ai'
 
+import { useAdmin } from '../state/adminState'
+
 export const Footer = (props) => {
+    const [isAdmin, setIsAdmin] = useAdmin()
+
     return (
         <div className={flex({
             direction: {base: 'column', xs: 'row'},
             justify: 'space-between',
             color: 'muted',
             width: '100%',
-            height: '4rem',
+            //height: '4rem',
             align: 'center',
-            paddingY: '3rem',
+            paddingY: '2rem',
         })}>
             <div className={flex({
                 direction: 'row',
@@ -22,7 +26,7 @@ export const Footer = (props) => {
             })}>
                 <AiOutlineCopyrightCircle />
                 <p> 2026 </p>
-                <p onClick={() => openLoginModal(props.isAdmin, props.setIsAdmin) } > Joonas Nivala {props.isAdmin() ? 'Admin' : ''}</p>
+                <p onClick={() => openLoginModal(isAdmin, setIsAdmin) } > Joonas Nivala {isAdmin() ? 'Admin' : ''}</p>
             
             </div>
             <div className={flex({
