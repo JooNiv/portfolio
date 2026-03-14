@@ -1,0 +1,41 @@
+---
+import "../index.css";
+import Layout from "../layouts/Layout.astro";
+
+import { flex } from "../../styled-system/patterns";
+
+import { css } from "../../styled-system/css";
+
+import { BasicButton } from "../components/ui/basicButton";
+---
+
+<Layout>
+    <section
+        class={flex({
+            grow: 1,
+            direction: "column",
+            align: "center",
+            justify: "center",
+            gap: "2rem",
+            color: "muted",
+            textAlign: "center",
+        })}
+    >
+        <h1 class={css({ fontSize: "3rem", margin: "0px" })}>404</h1>
+        <p class={css({ fontSize: "1.5rem" })}>
+            Nothing to see here, move along!
+        </p>
+        <BasicButton>
+            <a
+                href="/"
+                class={css({
+                    textDecoration: "none",
+                    color: "inherit",
+                    fontSize: {base:"1rem", sm:"1.25rem"},
+                })}
+            >
+                Go back home
+            </a>
+        </BasicButton>
+    </section>
+</Layout>
